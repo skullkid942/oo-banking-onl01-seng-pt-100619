@@ -17,9 +17,9 @@ class Transfer
   end
   
   def execute_transaction
-     if (@sender.balance < @amount) && !(self.valid?)
+     if (@sender.balance > @amount) && (self.valid?) && (status == "pending")
        binding.pry 
-      @status = "rejected"
+      @status = "completed"
       return "Transaction rejected. Please check your account balance."
     elsif @status == "complete"
       puts "Transaction was already excuted"
